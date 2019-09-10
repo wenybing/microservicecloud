@@ -1,14 +1,14 @@
 spring:
   application:
-    name: chengdu-1
+    name: chengdu-2
 server:
-  port: 8763
+  port: 8764
 eureka:
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: false
     status-page-url-path: /actuator/info
     health-check-url-path: /actuator/health
-    hostname: Server-chengdu-1
+    hostname: Server-chengdu-2
   server:
     #关闭自我保护机制
     enable-self-preservation: false
@@ -16,8 +16,7 @@ eureka:
       beijing: http://ruanyan.com:8761/eureka/
     remoteRegionUrls: http://ruanyan.com:8761/eureka/
     remoteRegionAppWhitelist:
-      beijing: http://ruanyan.com:8761/eureka/
-
+          beijing: http://ruanyan.com:8761/eureka/
   client:
     register-with-eureka: true
     fetch-registry: true

@@ -1,7 +1,33 @@
+#server:
+#  port: 80
+#eureka:
+#  client:
+#    register-with-eureka: false
+#    service-url:
+#      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+#
+
+
+spring:
+  application:
+    name: consumer
 server:
-  port: 80
+  port: 30030
 eureka:
+  instance:
+    prefer-ip-address: true
+    status-page-url-path: /actuator/info
+    health-check-url-path: /actuator/health
+    metadata-map:
+      zone: ruanyan
   client:
-    register-with-eureka: false
+    register-with-eureka: true
+    fetch-registry: true
+    prefer-same-zone-eureka: true
+    #地区
+    region: beijing
+    availability-zones:
+      beijing: ruanyan,yizhuang
     service-url:
-      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+      ruanyan: http://ruanyan.com:8761/eureka/
+      yizhuang: http://yizhuang.com:8762/eureka/

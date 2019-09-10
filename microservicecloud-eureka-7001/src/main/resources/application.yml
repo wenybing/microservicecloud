@@ -1,15 +1,28 @@
-#单机版
+spring:
+  application:
+    name: beijing-service-eureka
 server:
-  port: 7001
-
+  port: 8761
 eureka:
   instance:
-    #hostname: localhost #eureka服务端的实例名称
-    hostname: eureka7001.com #eureka服务端的实例名称
-
+    prefer-ip-address: false
+    status-page-url-path: /actuator/info
+    health-check-url-path: /actuator/health
+    hostname: Server-beijing-ruanyan
+  server:
+    #关闭自我保护机制
+    enable-self-preservation: false 
   client:
-    register-with-eureka: false #false表示不向注册中心注册自己。
-    fetch-registry: false #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
+    register-with-eureka: true
+    fetch-registry: true
+    prefer-same-zone-eureka: true
+    #地区
+    region: beijing
+    availability-zones:
+      beijing: ruanyan,yizhuang
+#      chengdu: chengdu-1,chengdu-2
     service-url:
-      #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/  单机版     #设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址。
-      defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/ #集群版
+      ruanyan: http://ruanyan.com:8761/eureka/
+      yizhuang: http://yizhuang.com:8762/eureka/
+#      chengdu-1: http://chengdu-1.com:8763/eureka/
+#      chengdu-2: http://chengdu-2.com:8764/eureka/

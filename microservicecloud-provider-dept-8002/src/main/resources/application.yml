@@ -24,14 +24,36 @@ spring:
       max-wait-millis: 200                                  # 等待连接获取的最大超时时间
 
 
+#eureka:
+#  client: #客户端注册进eureka服务列表内
+#    service-url:
+#      #defaultZone: http://localhost:7001/eureka 单机版
+#      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/ #集群
+#  instance:
+#    instance-id: microservicecloud-dept8002 #自定义服务名称信息
+#    prefer-ip-address: true     #访问路径可以显示IP地址
+
+
 eureka:
-  client: #客户端注册进eureka服务列表内
-    service-url:
-      #defaultZone: http://localhost:7001/eureka 单机版
-      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/ #集群
   instance:
-    instance-id: microservicecloud-dept8002 #自定义服务名称信息
-    prefer-ip-address: true     #访问路径可以显示IP地址
+    prefer-ip-address: true
+    status-page-url-path: /actuator/info
+    health-check-url-path: /actuator/health
+    metadata-map:
+      zone: yizhuang
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    prefer-same-zone-eureka: true
+    #地区
+    region: beijing
+    availability-zones:
+      beijing: ruanyan,yizhuang
+    service-url:
+      ruanyan: http://ruanyan.com:8761/eureka/
+      yizhuang: http://yizhuang.com:8762/eureka/
+
+zone.name: yizhuang
 
 info:
   app.name: wenyb-microservicecloud
