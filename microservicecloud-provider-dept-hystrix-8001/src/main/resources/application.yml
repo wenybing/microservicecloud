@@ -13,9 +13,11 @@ spring:
    datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: org.gjt.mm.mysql.Driver
-    url: jdbc:mysql://localhost:3306/cloudDB01
+    url: jdbc:mysql://localhost:3306/cloudDB01?useSSL=false
     username: root
-    password: root
+    password: K8YxIk6NnnDFY+EZAPxij8u/aWOyPYoybiPqzV5zkczIL6Bl9vMfYrMsXvPm8bahZMUBHMjzxNfl9THxHXWzpw==
+    publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJigWW+wfMmHtTMVHnKokyVYc79CnDyQCcBXvz9dalF7ajWFx2ZCLh+owRaYxCz/43QiidZgGvUlO7Tey1+QDR8CAwEAAQ==
+    validationQuery: select 1 from dual
     dbcp2:
       min-idle: 5
       initial-size: 5
@@ -25,7 +27,8 @@ spring:
 eureka:
   client: #客户端注册进eureka服务列表内
     service-url:
-      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+#      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+      defaultZone: http://127.0.0.1:7004/eureka
   instance:
     instance-id: microservicecloud-dept8001-hystrix   #自定义服务名称信息
     prefer-ip-address: true     #访问路径可以显示IP地址
